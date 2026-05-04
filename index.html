@@ -173,7 +173,7 @@ nav {
 .artifact-list { display: flex; flex-direction: column; }
 .artifact-item {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: auto 1fr;
   gap: 0 36px;
   padding: 28px 0;
   border-top: 1px solid rgba(255,255,255,0.12);
@@ -183,12 +183,20 @@ nav {
   grid-template-columns: 1fr;
 }
 .artifact-thumb {
-  width: 120px;
   height: 140px;
+  width: auto;
   background: #6a00cc;
   border: 1px solid rgba(255,255,255,0.15);
   position: relative;
   flex-shrink: 0;
+}
+.artifact-thumb.placeholder {
+  width: 100px;
+}
+.artifact-thumb img {
+  height: 100%;
+  width: auto;
+  display: block;
 }
 .artifact-thumb svg {
   position: absolute;
@@ -351,7 +359,7 @@ nav {
     <div class="artifact-list">
 
       <div class="artifact-item">
-        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div class="artifact-thumb"><img src="sonic-boom.webp" alt="Cover of Sonic Boom by John Alderman, 2001"></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Sonic Boom</h3>
@@ -362,7 +370,7 @@ nav {
       </div>
 
       <div class="artifact-item">
-        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div class="artifact-thumb"><img src="core-memory.jpg" alt="Cover of Core Memory: A Visual Survey of Vintage Computers, 2007"></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Core Memory</h3>
@@ -373,7 +381,7 @@ nav {
       </div>
 
       <div class="artifact-item">
-        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div class="artifact-thumb"><img src="exploding-tv.png" alt="Page from Exploding TV by John Alderman, Erik Adigard, and Sarah Borruso, 2006"></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Exploding TV</h3>
@@ -384,7 +392,7 @@ nav {
       </div>
 
       <div class="artifact-item">
-        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div class="artifact-thumb"><img src="dacs.jpg" alt="Cover of Designing Across Senses by Christine W. Park and John Alderman, 2018"></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Designing Across Senses</h3>
@@ -394,7 +402,8 @@ nav {
         </div>
       </div>
 
-      <div class="artifact-item no-image">
+      <div class="artifact-item">
+        <div class="artifact-thumb placeholder"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Dix Réflexions sur l'Interface Graphique</h3>
@@ -404,7 +413,8 @@ nav {
         </div>
       </div>
 
-      <div class="artifact-item no-image">
+      <div class="artifact-item">
+        <div class="artifact-thumb placeholder"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
         <div>
           <div class="artifact-head">
             <h3 class="artifact-title">Dieter Rams: Making Systems and Making Sense</h3>
