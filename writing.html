@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Alderman — Writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0530D1;
+  --sans:    'IBM Plex Sans', sans-serif;
+  --mono:    'IBM Plex Mono', monospace;
+  --sat:     #edeaf8;
+  --sat-d:   rgba(255,255,255,0.45);
+  --yel:     #1a1a18;
+  --yel-d:   rgba(0,0,0,0.42);
+  --px:      52px;
+}
+
+html { background: var(--bg); font-family: var(--sans); }
+body { margin: 0; }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0530D1;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 15px var(--px);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-name {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); text-decoration: none;
+}
+.nav-link.active {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.85);
+  padding-bottom: 1px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────── */
+.page-header {
+  background: #0530D1;
+  padding: 48px var(--px) 40px;
+  border-bottom: 1px solid #0530D1;
+}
+
+.page-headline {
+  font-family: var(--sans);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  font-weight: 400;
+}
+
+/* ── Band (one per piece) ────────────────────────────────────────────── */
+.band {
+  width: 100%;
+  padding: 20px var(--px) 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0 20px;
+  align-items: start;
+  min-height: 108px;
+}
+
+.band-index {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  padding-top: 5px;
+  text-align: right;
+}
+
+.band-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  align-items: start;
+}
+
+.band-left {}
+
+.band-title {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+}
+
+.band-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+
+.band-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.65;
+  padding-top: 4px;
+}
+
+/* Saturated field colors */
+.sat .band-index  { color: var(--sat-d); }
+.sat .band-title  { color: var(--sat); }
+.sat .band-meta   { color: var(--sat-d); }
+.sat .band-desc   { color: var(--sat); opacity: 0.82; }
+
+/* Yellow field */
+.yel .band-index  { color: var(--yel-d); }
+.yel .band-title  { color: var(--yel); }
+.yel .band-meta   { color: var(--yel-d); }
+.yel .band-desc   { color: var(--yel); opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">John Alderman</a>
+  <div class="nav-links">
+    <a class="nav-link" href="work.html">Work</a>
+    <a class="nav-link active" href="writing.html">Writing</a>
+    <a class="nav-link" href="speaking.html">Speaking</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-headline">Before Consensus: Selected Work</div>
+  <div class="page-title">Writing · 1997–present</div>
+</div>
+
+<!-- 01 Sonic Boom — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">01</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Sonic Boom: Napster, MP3, and the New Pioneers of Music</div>
+      <div class="band-meta">2001 · Perseus Books / 4th Estate</div>
+    </div>
+    <div class="band-desc">The music industry was still trying to stop what was already happening when this book came out. An account of the first structural collapse of music as a packaged product. Who saw it coming, who didn't, and what it revealed about how entrenched industries misread change. New York Times Notable Book. New York Times Best Books Since 2000, 2025.</div>
+  </div>
+</div>
+
+<!-- 02 Life in the Present Tense — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">02</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Life in the Present Tense: The Campana Brothers</div>
+      <div class="band-meta">2001 · Surface · Issue 31</div>
+    </div>
+    <div class="band-desc">A portrait of Humberto and Fernando Campana that uses Brasilia — the failed utopian city — as a lens for understanding designers who turned imperfection into a methodology. Written from inside São Paulo's productive chaos. The poetry of error as a design philosophy.</div>
+  </div>
+</div>
+
+<!-- 03 Louis Vuitton Omotesando — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">03</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Louis Vuitton Omotesando</div>
+      <div class="band-meta">2003 · Interior Design</div>
+    </div>
+    <div class="band-desc">An architectural feature that reads, in retrospect, as early thinking about immersion as a brand strategy. The flagship as temple. The velvet rope as initiation. The purse as magical object.</div>
+  </div>
+</div>
+
+<!-- 04 Asia's Agent of Change — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">04</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Asia's Agent of Change</div>
+      <div class="band-meta">2003 · J@pan Inc</div>
+    </div>
+    <div class="band-desc">Technical journalism about IPv6 at the moment the address space problem was still invisible to most. The infrastructure of the future, written before it was infrastructure. An address is a form of existence. What can be located can be acted on.</div>
+  </div>
+</div>
+
+<!-- 05 Core Memory — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">05</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Core Memory: A Visual Survey of Vintage Computers</div>
+      <div class="band-meta">2007 · Chronicle Books · Photography by Mark Richards</div>
+    </div>
+    <div class="band-desc">At the moment computing was moving from labs to what everyone had in their hands all day long and couldn't stop looking at, this book made it physical again. Fifty machines from the Computer History Museum, photographed as objects of intention. History made visible.</div>
+  </div>
+</div>
+
+<!-- 06 Exploding TV — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">06</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Exploding TV</div>
+      <div class="band-meta">2006 · Razorfish × M-A-D · With Erik Adigard and Sarah Borruso</div>
+    </div>
+    <div class="band-desc">A framework for forces that had only just begun to coalesce and reshape how we produce and consume video. Named nine properties of something that wouldn't fully exist for five more years. Published a year before the iPhone launched.</div>
+  </div>
+</div>
+
+<!-- 07 Philip Ross — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">07</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Philip Ross: Life in All Its Tenses</div>
+      <div class="band-meta">2007 · Make Magazine</div>
+    </div>
+    <div class="band-desc">A profile of an artist whose work follows biological materials through transformation — oysters, fungus, hydroponic glass pods. On observation as the fundamental scientific skill, and why a notebook was pretty much all Darwin had.</div>
+  </div>
+</div>
+
+<!-- 08 Dix Réflexions — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">08</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Dix Réflexions sur l'Interface Graphique</div>
+      <div class="band-meta">2008 · Étapes · With Erik Adigard, M-A-D</div>
+    </div>
+    <div class="band-desc">Ten reflections on the graphical interface as it became the operating environment of modern life — no longer just making sense of the world, but shaping what sense is possible.</div>
+  </div>
+</div>
+
+<!-- 09 Repackaging Nature — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">09</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Repackaging Nature: An Interview with Philip Ross</div>
+      <div class="band-meta">2008 · Rhizome</div>
+    </div>
+    <div class="band-desc">A conversation with an artist who grows buildings out of mushrooms and teaches plant cloning as a social event. On the thin line between art and biology, and why genetic engineering is just another form of cooking. San Francisco's biotech counterculture, seen from inside.</div>
+  </div>
+</div>
+
+<!-- 10 Dieter Rams — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">10</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Dieter Rams: Making Systems and Making Sense</div>
+      <div class="band-meta">2011 · Domus · San Francisco</div>
+    </div>
+    <div class="band-desc">A critical review of the Rams retrospective at SFMOMA that reframes him as a systems designer as much as a functionalist. Setting the standard for what becomes normal and intuitive is a position of responsibility. Later used as teaching material at Pratt.</div>
+  </div>
+</div>
+
+<!-- 11 Designing Across Senses — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">11</div>
+  <div class="band-body">
+    <div class="band-left">
+      <div class="band-title">Designing Across Senses: A Multimodal Approach to Product Design</div>
+      <div class="band-meta">2018 · O'Reilly · With Christine W. Park</div>
+    </div>
+    <div class="band-desc">Multimodal interfaces were becoming inevitable as computing moved out into physical lives and environments, but most designers had no vocabulary for the problem, no frameworks, no working methods to move interaction out into the real world. This started building them.</div>
+  </div>
+</div>
+
+<!-- Yellow Translation band -->
+<div style="background:#F5E100; padding:40px 52px 56px; display:grid; grid-template-columns:36px 1fr; gap:0 20px; border-bottom:none;">
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:0.1em; color:rgba(0,0,0,0.42); padding-top:5px; text-align:right;">—</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 48px; align-items:start;">
+    <div>
+      <div style="font-family:'IBM Plex Sans',sans-serif; font-size:22px; font-weight:400; line-height:1.15; letter-spacing:-0.01em; color:#1a1a18; margin-bottom:6px;">Available</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.42); line-height:1.7;">Writing · Inquiry</div>
+    </div>
+    <div style="padding-top:4px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.65; color:#1a1a18;">If something here is useful for a class, a project, or a conversation — get in touch.</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.06em; color:#1a1a18;"><a href="mailto:john@aldermanward.com" style="color:#1a1a18; text-decoration:none; border-bottom:1px solid rgba(0,0,0,0.25);">john@aldermanward.com</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

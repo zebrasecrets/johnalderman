@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Alderman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sans: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --px:   52px;
+  --ink:  #1a1a18;
+  --sat:  #F0EEF8;
+  --c-frame:       #0530D1;
+  --c-artifact:    #8F11F7;
+  --c-signal:      #F711A3;
+  --c-translation: #F5E100;
+  --t-meta-sat:    rgba(255,255,255,0.55);
+  --t-meta-yel:    #887700;
+}
+
+html, body { margin: 0; padding: 0; font-family: var(--sans); background: var(--c-frame); }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--c-frame);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 15px var(--px);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-name {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); text-decoration: none;
+}
+.nav-link:hover { color: rgba(255,255,255,0.85); }
+
+/* ── Band shell ──────────────────────────────────────────────────────── */
+.band {
+  position: relative;
+  border-bottom: 1px solid var(--ink);
+}
+.band-inner {
+  padding: 40px var(--px) 56px;
+}
+
+.band-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  display: block;
+}
+
+.band-serial {
+  position: absolute;
+  bottom: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+.band-serial.left  { left: var(--px); }
+.band-serial.right { right: var(--px); }
+
+/* ── Frame band (blue) ───────────────────────────────────────────────── */
+.frame { background: var(--c-frame); }
+.frame .band-inner { padding-top: 32px; padding-bottom: 64px; }
+.frame .band-label { color: var(--t-meta-sat); }
+.frame .band-serial { color: var(--t-meta-sat); }
+
+.frame-list { display: flex; flex-direction: column; }
+.frame-item {
+  padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+.frame-statement {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--sat);
+  max-width: 680px;
+}
+
+/* ── Artifact band (purple) ──────────────────────────────────────────── */
+.artifact { background: var(--c-artifact); }
+.artifact .band-label { color: var(--t-meta-sat); }
+.artifact .band-serial { color: var(--t-meta-sat); }
+
+.artifact-list { display: flex; flex-direction: column; }
+.artifact-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0 36px;
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  align-items: start;
+}
+.artifact-item.no-image {
+  grid-template-columns: 1fr;
+}
+.artifact-thumb {
+  width: 120px;
+  height: 140px;
+  background: #6a00cc;
+  border: 1px solid rgba(255,255,255,0.15);
+  position: relative;
+  flex-shrink: 0;
+}
+.artifact-thumb svg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+.artifact-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.artifact-title {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--sat);
+}
+.artifact-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t-meta-sat);
+}
+.artifact-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--sat);
+  opacity: 0.85;
+  max-width: 640px;
+}
+
+/* ── Signal band (magenta) ───────────────────────────────────────────── */
+.signal { background: var(--c-signal); }
+.signal .band-label { color: var(--t-meta-sat); }
+.signal .band-serial { color: var(--t-meta-sat); }
+
+.signal-list {
+  columns: 2;
+  column-gap: 48px;
+}
+.signal-item {
+  break-inside: avoid;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.signal-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--sat);
+}
+
+/* ── Translation band (yellow) ───────────────────────────────────────── */
+.translation { background: var(--c-translation); border-bottom: none; }
+.translation .band-label { color: var(--t-meta-yel); }
+.translation .band-serial { color: var(--t-meta-yel); }
+
+.translation-list { display: flex; flex-direction: column; }
+.translation-item {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.translation-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--t-meta-yel);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.translation-text {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Translation footer — contact line */
+.translation-foot {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.translation-foot-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t-meta-yel);
+}
+.translation-foot a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+.translation-foot a:hover {
+  border-bottom-color: var(--ink);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">John Alderman</a>
+  <div class="nav-links">
+    <a class="nav-link" href="work.html">Work</a>
+    <a class="nav-link" href="writing.html">Writing</a>
+    <a class="nav-link" href="speaking.html">Speaking</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- ── FRAME band ─────────────────────────────────────────────────────── -->
+<section class="band frame">
+  <div class="band-inner">
+    <span class="band-label">Frame</span>
+    <div class="frame-list">
+      <div class="frame-item"><div class="frame-statement">The world doesn't arrive as meaning. It has to be made visible.</div></div>
+      <div class="frame-item"><div class="frame-statement">Most things are felt before they're understood.</div></div>
+      <div class="frame-item"><div class="frame-statement">Interfaces disappear. Systems remain.</div></div>
+      <div class="frame-item"><div class="frame-statement">Information is abundant. Imagination is rarer.</div></div>
+      <div class="frame-item"><div class="frame-statement">Confusion can become alignment. That transition is the work.</div></div>
+      <div class="frame-item"><div class="frame-statement">Most problems aren't a lack of information — they're a failure to make sense of it.</div></div>
+      <div class="frame-item"><div class="frame-statement">Attention, synthesis, imagination. In that order, more or less.</div></div>
+    </div>
+  </div>
+  <span class="band-serial left">03229</span>
+  <span class="band-serial right">01 / 04</span>
+</section>
+
+<!-- ── ARTIFACT band ──────────────────────────────────────────────────── -->
+<section class="band artifact">
+  <div class="band-inner">
+    <span class="band-label">Artifact · 1998–2024</span>
+    <div class="artifact-list">
+
+      <div class="artifact-item">
+        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Sonic Boom</div>
+            <div class="artifact-meta">2001 · Perseus Books / 4th Estate</div>
+          </div>
+          <div class="artifact-desc">Written while the music industry was still trying to stop what was already happening. One of the first attempts to name the shape of a disruption before it had settled. New York Times Notable Book.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item">
+        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Core Memory</div>
+            <div class="artifact-meta">2007 · Chronicle Books</div>
+          </div>
+          <div class="artifact-desc">Before computing disappeared into seamless interfaces, this book made its history physical again. Fifty computers photographed by Mark Richards. Design Observer Book of the Year.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item">
+        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Exploding TV</div>
+            <div class="artifact-meta">2006 · With Erik Adigard and Sarah Borruso</div>
+          </div>
+          <div class="artifact-desc">A framework for forces that were only beginning to reshape video culture. Named nine properties of something that wouldn't fully exist for another five years.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item">
+        <div class="artifact-thumb"><svg width="40" height="40" viewBox="0 0 40 40"><line x1="0" y1="0" x2="40" y2="40" stroke="white" stroke-width="1"/><line x1="40" y1="0" x2="0" y2="40" stroke="white" stroke-width="1"/></svg></div>
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Designing Across Senses</div>
+            <div class="artifact-meta">2018 · O'Reilly · with Christine W. Park</div>
+          </div>
+          <div class="artifact-desc">Computing was escaping the screen, but design methods had not yet caught up. This book built the frameworks for thinking across senses, environments, and embodied interaction.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item no-image">
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Dix Réflexions sur l'Interface Graphique</div>
+            <div class="artifact-meta">2008 · Étapes · with Erik Adigard, M-A-D</div>
+          </div>
+          <div class="artifact-desc">Ten reflections on the graphical interface at the moment it became the primary environment of human life. Written in French design press, with Erik Adigard. Published before the observation was commonplace.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item no-image">
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Dieter Rams: Making Systems and Making Sense</div>
+            <div class="artifact-meta">2011 · Domus · San Francisco</div>
+          </div>
+          <div class="artifact-desc">A critical review of the Rams retrospective at SFMOMA that reframes him as a systems designer as much as a functionalist. Setting the standard for what becomes normal and intuitive is a position of responsibility.</div>
+        </div>
+      </div>
+
+      <div class="artifact-item no-image">
+        <div>
+          <div class="artifact-head">
+            <div class="artifact-title">Future Signals</div>
+            <div class="artifact-meta">Ongoing · Internal tool</div>
+          </div>
+          <div class="artifact-desc">At a time when the dystopic seems to be the only available mode, a broader tool and practice for imagining change and how it happens.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <span class="band-serial left">07104</span>
+  <span class="band-serial right">02 / 04</span>
+</section>
+
+<!-- ── SIGNAL band ────────────────────────────────────────────────────── -->
+<section class="band signal">
+  <div class="band-inner">
+    <span class="band-label">Signal · ongoing</span>
+    <div class="signal-list">
+      <div class="signal-item"><div class="signal-text">We seem to be living with more kinds of intelligence each day. Which ones matter, and for what?</div></div>
+      <div class="signal-item"><div class="signal-text">Attention has qualities. Which ones matter? Which hold possibility? Which are under threat?</div></div>
+      <div class="signal-item"><div class="signal-text">When do we need to demonstrate good intentions before we assume them?</div></div>
+      <div class="signal-item"><div class="signal-text">Something psychedelic has entered the atmosphere. Has it become inescapable?</div></div>
+      <div class="signal-item"><div class="signal-text">Imagination is a thinking discipline. Why is it too often left out?</div></div>
+      <div class="signal-item"><div class="signal-text">Design solves for efficiency. Art solves for effectiveness. Why do most organizations hire for the first when they desperately need the second?</div></div>
+      <div class="signal-item"><div class="signal-text">How do we create conditions under which the best thinking can happen?</div></div>
+    </div>
+  </div>
+  <span class="band-serial left">00814</span>
+  <span class="band-serial right">03 / 04</span>
+</section>
+
+<!-- ── TRANSLATION band ───────────────────────────────────────────────── -->
+<section class="band translation">
+  <div class="band-inner">
+    <span class="band-label">Translation</span>
+    <div class="translation-list">
+      <div class="translation-item"><span class="translation-num">01</span><div class="translation-text">When teams are too close to see the shape they're in, I make that shape visible.</div></div>
+      <div class="translation-item"><span class="translation-num">02</span><div class="translation-text">When something important doesn't have language yet, I help define it — so people can align and act.</div></div>
+      <div class="translation-item"><span class="translation-num">03</span><div class="translation-text">Scattered signals don't become direction on their own. I help turn them into something teams can move on.</div></div>
+      <div class="translation-item"><span class="translation-num">04</span><div class="translation-text">Most systems make sense to the people inside them. That's the problem — I help expose what they can't see.</div></div>
+      <div class="translation-item"><span class="translation-num">05</span><div class="translation-text">What isn't detectable can't be changed. I make things detectable.</div></div>
+      <div class="translation-item"><span class="translation-num">06</span><div class="translation-text">Facilitation isn't running a meeting. It's creating conditions where a group can think together.</div></div>
+      <div class="translation-item"><span class="translation-num">07</span><div class="translation-text">Communication isn't what's said. It's what's understood, remembered, and acted on.</div></div>
+      <div class="translation-item"><span class="translation-num">08</span><div class="translation-text">A brand isn't what you publish. It's what people remember.</div></div>
+      <div class="translation-item"><span class="translation-num">09</span><div class="translation-text">The fish doesn't know it's wet. I know. I tell the fish.</div></div>
+    </div>
+    <div class="translation-foot">
+      <span class="translation-foot-meta">Get in Touch · Inquiry</span>
+      <a href="mailto:john@aldermanward.com">john@aldermanward.com</a>
+    </div>
+  </div>
+  <span class="band-serial left">09296</span>
+  <span class="band-serial right">04 / 04</span>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Alderman — About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sans: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --px:   52px;
+  --sat:  #edeaf8;
+  --sat-d: rgba(255,255,255,0.5);
+  --yel:  #1a1a18;
+  --yel-d: rgba(0,0,0,0.42);
+}
+
+html, body { margin: 0; padding: 0; font-family: var(--sans); }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0530D1;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 15px var(--px);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-name {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); text-decoration: none;
+}
+.nav-link.active {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.85);
+  padding-bottom: 1px;
+}
+
+/* ── Blue band ───────────────────────────────────────────────────────── */
+.band-blue {
+  background: #0530D1;
+  padding: 56px var(--px) 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 64px;
+  align-items: start;
+}
+
+.band-headline {
+  font-family: var(--sans);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.band-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sat-d);
+  margin-bottom: 36px;
+}
+
+.band-body-text {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--sat);
+  opacity: 0.92;
+  max-width: 540px;
+}
+.band-body-text p + p {
+  margin-top: 14px;
+}
+
+.portrait-col {
+  display: block;
+}
+.portrait-col img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Yellow band ─────────────────────────────────────────────────────── */
+.band-yellow {
+  background: #F5E100;
+  padding: 40px var(--px) 56px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0 20px;
+}
+
+.band-yellow-index {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--yel-d);
+  padding-top: 5px;
+  text-align: right;
+}
+
+.band-yellow-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  align-items: start;
+}
+
+.band-yellow-title {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--yel);
+  margin-bottom: 6px;
+}
+
+.band-yellow-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yel-d);
+  line-height: 1.7;
+}
+
+.band-yellow-details {
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-line {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--yel);
+  line-height: 1.5;
+}
+
+.detail-line a {
+  color: var(--yel);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">John Alderman</a>
+  <div class="nav-links">
+    <a class="nav-link" href="work.html">Work</a>
+    <a class="nav-link" href="writing.html">Writing</a>
+    <a class="nav-link" href="speaking.html">Speaking</a>
+    <a class="nav-link active" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- Blue Frame band -->
+<div class="band-blue">
+  <div>
+    <div class="band-headline">About</div>
+    <div class="band-label">John Alderman</div>
+    <div class="band-body-text">
+      <p>John Alderman is a writer and experience strategist whose work explores communication, perception, immersive experience, and technological change.</p>
+      <p>His career began in the cyberculture era at Mondo 2000 and HotWired, and has since moved through journalism, authorship, design strategy, and multimodal interaction design — always focused on how new systems become meaningful, usable, and understandable in human terms.</p>
+      <p>He is the author of <em>Sonic Boom</em> and <em>Core Memory</em>, and co-author of <em>Designing Across Senses</em>. He teaches at Stanford's d.school and co-leads Alderman+Ward.</p>
+    </div>
+  </div>
+  <div class="portrait-col">
+    <img src="john_alderman.jpg" alt="Portrait of John Alderman">
+  </div>
+</div>
+
+<!-- Yellow Translation band -->
+<div class="band-yellow">
+  <div class="band-yellow-index">—</div>
+  <div class="band-yellow-body">
+    <div>
+      <div class="band-yellow-title">Get in Touch</div>
+      <div class="band-yellow-meta">About · Contact</div>
+    </div>
+    <div class="band-yellow-details">
+      <div class="detail-line"><a href="mailto:john@aldermanward.com">john@aldermanward.com</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

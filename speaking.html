@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Alderman — Speaking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sans: 'IBM Plex Sans', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --sat:  #edeaf8;
+  --sat-d: rgba(255,255,255,0.45);
+  --yel:  #1a1a18;
+  --yel-d: rgba(0,0,0,0.42);
+  --px:   52px;
+}
+
+html { font-family: var(--sans); }
+body { margin: 0; }
+
+/* ── Band ───────────────────────────────────────────────────────────── */
+.band {
+  width: 100%;
+  padding: 24px var(--px);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0 20px;
+  align-items: start;
+  min-height: 108px;
+  border-bottom: none;
+}
+.band:last-of-type { border-bottom: none; }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0530D1;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 15px var(--px);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-name {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); text-decoration: none;
+}
+.nav-link.active {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.85);
+  padding-bottom: 1px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────── */
+.page-header {
+  background: #0530D1;
+  padding: 48px var(--px) 40px;
+  border-bottom: none;
+  margin-bottom: 0;
+  display: block;
+}
+.page-headline {
+  font-family: var(--sans);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.page-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── Band body ───────────────────────────────────────────────────────── */
+.band-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  align-items: start;
+}
+
+.band-title {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+}
+
+.band-title-ja {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin-bottom: 3px;
+}
+
+.band-title-sub {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin-bottom: 5px;
+  opacity: 0.75;
+}
+
+.band-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+
+.band-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.65;
+  padding-top: 4px;
+}
+
+/* Saturated fields */
+.sat .band-index { color: var(--sat-d); }
+.sat .band-title { color: var(--sat); }
+.sat .band-title-ja { color: var(--sat); }
+.sat .band-title-sub { color: var(--sat); }
+.sat .band-meta  { color: var(--sat-d); }
+.sat .band-desc  { color: var(--sat); opacity: 0.82; }
+
+/* Yellow field */
+.yel .band-index { color: var(--yel-d); }
+.yel .band-title { color: var(--yel); }
+.yel .band-meta  { color: var(--yel-d); }
+.yel .band-desc  { color: var(--yel); opacity: 0.88; }
+.yel .band-email {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--yel);
+  margin-top: 16px;
+  display: block;
+  opacity: 0.7;
+  text-decoration: none;
+}
+.yel .band-email:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">John Alderman</a>
+  <div class="nav-links">
+    <a class="nav-link" href="work.html">Work</a>
+    <a class="nav-link" href="writing.html">Writing</a>
+    <a class="nav-link active" href="speaking.html">Speaking</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-headline">Thirty Years of Talks, Workshops, and Public Work</div>
+  <div class="page-title">Speaking · 1995–present</div>
+</div>
+
+<!-- 01 Immersion as a Design Strategy — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">01</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">Immersion as a Design Strategy</div>
+      <div class="band-meta">2026 · Facilitation Lab / Swissnex · San Francisco</div>
+    </div>
+    <div class="band-desc">Workshop on immersion as a design strategy for shaping attention, participation, and meaning across physical, social, and cognitive experiences.</div>
+  </div>
+</div>
+
+<!-- 02 CCA Machinic Modernity — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">02</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">CCA — Machinic Modernity</div>
+      <div class="band-meta">2024 · California College of the Arts · San Francisco</div>
+    </div>
+    <div class="band-desc">Guest lecture on multisensory design for the Machinic Modernity course.</div>
+  </div>
+</div>
+
+<!-- 03 Designing Across Senses — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">03</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">Designing Across Senses</div>
+      <div class="band-meta">2019 · Portland Design Week · Portland</div>
+    </div>
+    <div class="band-desc">A talk on multimodal design and the expanding territory of human-computer interaction beyond the screen.</div>
+  </div>
+</div>
+
+<!-- 04 What is Multimodal Design — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">04</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">What is Multimodal Design?</div>
+      <div class="band-meta">2016 · O'Reilly Fluent Conference · San Francisco</div>
+    </div>
+    <div class="band-desc">A presentation on designing for multiple senses as computing moved into physical environments and ambient systems.</div>
+  </div>
+</div>
+
+<!-- 05 Big Content — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">05</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">Big Content</div>
+      <div class="band-meta">2012 · Content Strategy Forum · Cape Town</div>
+    </div>
+    <div class="band-desc">A keynote arguing that communication strategy needed to become systems thinking — as data scales and participants multiply, the strategist's role expands from message-maker to systems architect.</div>
+  </div>
+</div>
+
+<!-- 06 Conversation Mapping — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">06</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">Conversation Mapping</div>
+      <div class="band-meta">2011 · Content Strategy Forum · London</div>
+    </div>
+    <div class="band-desc">A paid workshop on building communication platforms through designed conversations — translating brand meaning into beliefs, behaviors, and artifacts that travel. Participants left with tools they could use immediately.</div>
+  </div>
+</div>
+
+<!-- 07 Talks at Google: Core Memory — Artifact purple -->
+<div class="band sat" style="background:#8F11F7;">
+  <div class="band-index">07</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">Talks at Google: Core Memory</div>
+      <div class="band-meta">2007 · Google · Mountain View</div>
+    </div>
+    <div class="band-desc">A presentation on computing history as cultural history — the machines that made modern computing possible, photographed as objects of intention.</div>
+  </div>
+</div>
+
+<!-- 08 かっこいい機械の夜 — Signal magenta -->
+<div class="band sat" style="background:#F711A3;">
+  <div class="band-index">08</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title-ja">かっこいい機械の夜 Vol.2</div>
+      <div class="band-title-sub" style="color:var(--sat);">The Night of Cool Machines</div>
+      <div class="band-meta">2008 · Tokyo</div>
+    </div>
+    <div class="band-desc">A talk at a Japanese technology and culture event celebrating the Tokyo release of Core Memory — vintage computers as designed objects, presented to an audience that understood beautiful machines.</div>
+  </div>
+</div>
+
+<!-- 09 HotWired and the World Wide Web — Frame blue -->
+<div class="band sat" style="background:#0530D1;">
+  <div class="band-index">09</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title">HotWired and the World Wide Web</div>
+      <div class="band-meta">1995 · Otis College of Art and Design · Los Angeles</div>
+    </div>
+    <div class="band-desc">A lecture on the emerging web as a cultural medium, delivered at the moment the medium was still being invented.</div>
+  </div>
+</div>
+
+<!-- Contact — Translation yellow -->
+<div class="band yel" style="background:#F5E100;">
+  <div class="band-index">—</div>
+  <div class="band-body">
+    <div>
+      <div class="band-title" style="color:var(--yel);">Get in Touch</div>
+      <div class="band-meta" style="color:var(--yel-d);">SPEAKING AND WORKSHOPS · INQUIRY</div>
+    </div>
+    <div>
+      <div class="band-desc" style="color:var(--yel);">Interested in a keynote, workshop, panel, or conversation? Topics include multisensory design, immersion, futures thinking, communication systems, and collaborative sensemaking.</div>
+      <a href="mailto:john@aldermanward.com" class="band-email">john@aldermanward.com</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

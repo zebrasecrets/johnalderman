@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Alderman — Work (Bands)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:    #F7F4F0;
+  --ink:   #1a1a18;
+  --sans:  'IBM Plex Sans', sans-serif;
+  --mono:  'IBM Plex Mono', monospace;
+
+  --cFrame:      #0530D1;
+  --cArtifact:   #8F11F7;
+  --cSignal:     #F711A3;
+  --cTranslation:#F5E100;
+
+  /* Text on saturated fields */
+  --sat:   #edeaf8;      /* near-white for blue/purple/magenta */
+  --sat-d: rgba(255,255,255,0.45); /* dimmed for meta */
+  /* Text on yellow */
+  --yel:   #1a1a18;
+  --yel-d: rgba(0,0,0,0.45);
+
+  --col-w: 280px;        /* entry column width */
+  --band-h: 300px;       /* band viewport height */
+  --pad-x: 52px;         /* page left/right pad */
+  --pad-y: 32px;         /* band top/bottom pad */
+  --rule-sat: rgba(255,255,255,0.15);
+  --rule-yel: rgba(0,0,0,0.12);
+}
+
+html { background: var(--cFrame); font-family: var(--sans); }
+body { margin: 0; }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--cFrame);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 15px var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+}
+.nav-link.active {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.85);
+  padding-bottom: 1px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────── */
+.page-header { display: none; }
+.page-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8780;
+}
+
+/* ── Band ────────────────────────────────────────────────────────────── */
+.band {
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  position: relative;
+}
+/* First band has a two-line label — add matching bottom padding to balance */
+.band:first-of-type {
+  padding-bottom: 14px;
+}
+
+/* Band label — sits above the track in flow */
+.band-label {
+  padding: var(--pad-y) var(--pad-x) 0;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  pointer-events: none;
+  line-height: 1.6;
+}
+
+/* Horizontal scroll track */
+.band-track {
+  display: flex;
+  align-items: stretch;
+  overflow-x: scroll;
+  height: var(--band-h);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-left: var(--pad-x);
+}
+.band-track::-webkit-scrollbar { display: none; }
+
+/* Each entry column */
+.col {
+  min-width: var(--col-w);
+  width: var(--col-w);
+  flex-shrink: 0;
+  padding: var(--pad-y) 28px var(--pad-y) 0;
+  border-right: 1px solid var(--rule-sat);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-right: 28px;
+}
+
+.col:last-child {
+  border-right: none;
+  /* trailing empty space implies continuation is done */
+  padding-right: var(--pad-x);
+  min-width: calc(var(--col-w) + var(--pad-x));
+}
+
+.col-index {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--sat-d);
+  margin-bottom: 20px;
+}
+
+.col-title {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--sat);
+  margin-bottom: 6px;
+}
+
+.col-title.large {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.col-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sat-d);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.col-desc {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--sat);
+  opacity: 0.88;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
+/* Sub-bullets inside column */
+.col-subs {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--rule-sat);
+}
+
+.col-sub {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule-sat);
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: 0 8px;
+}
+
+.col-sub-bullet {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--sat-d);
+  padding-top: 2px;
+}
+
+.col-sub-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--sat);
+  opacity: 0.8;
+}
+
+/* Yellow overrides */
+.band-yellow .col-index      { color: var(--yel-d); }
+.band-yellow .col-title      { color: var(--yel); }
+.band-yellow .col-meta       { color: var(--yel-d); }
+.band-yellow .col-desc       { color: var(--yel); opacity: 0.85; }
+.band-yellow .col             { border-right-color: var(--rule-yel); }
+.band-yellow .col-subs       { border-top-color: var(--rule-yel); }
+.band-yellow .col-sub        { border-bottom-color: var(--rule-yel); }
+.band-yellow .col-sub-bullet { color: var(--yel-d); }
+.band-yellow .col-sub-text   { color: var(--yel); }
+.band-yellow .band-label     { color: var(--yel-d); }
+
+/* Scroll hint — fades in on right edge */
+.band::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">John Alderman</a>
+  <div class="nav-links">
+    <a class="nav-link active" href="work.html">Work</a>
+    <a class="nav-link" href="writing.html">Writing</a>
+    <a class="nav-link" href="speaking.html">Speaking</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- ── BAND 1: Strategy and Creative Work ─────────────────────────────── -->
+<div class="band" style="background: var(--cFrame);">
+  <div class="band-label" style="color: var(--sat-d);">Work · 1992–present<br>Strategy and Creative Work</div>
+  <div class="band-track">
+
+    <div class="col">
+      <div class="col-index">01</div>
+      <div class="col-title">Alderman+Ward</div>
+      <div class="col-meta">2024–Present · Co-founder</div>
+      <div class="col-desc">Strategy, communication, and design studio focused on helping organizations make sense of change across finance, healthcare, and technology.</div>
+      <div class="col-subs">
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Market expansion strategy for Carta. Stakeholder interviews, competitive analysis, growth opportunity sizing.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">FutureSignals.io: structured foresight platform. In development.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Pattern Recognition: event series and workshop frameworks, distributed as zines.</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">02</div>
+      <div class="col-title">Charles Schwab</div>
+      <div class="col-meta">2013–2024 · Director of Planning · Sr. Manager UX Content Strategy</div>
+      <div class="col-desc">Strategic lead for Schwab's 140-person in-house creative agency during a period of unprecedented growth: client assets from $2T to $7.8T, active accounts from 9M to 33M.</div>
+      <div class="col-subs">
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Master creative briefs across all business lines. Introduced journey mapping to the company.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Co-led journey mapping work that informed communications strategy during the TD Ameritrade acquisition integration.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Led three content strategy teams: Schwab Assistant, global taxonomy, help systems.</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">03</div>
+      <div class="col-title">Razorfish</div>
+      <div class="col-meta">2005–2010 · Creative Director, Content</div>
+      <div class="col-desc">Director of the content discipline for California. Clients included Intel, Visa, Disney, Kaiser Permanente, PG&amp;E, Wells Fargo, McKesson, and Yahoo!.</div>
+      <div class="col-subs">
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Unified interface for Disney.com. 38,000-page content inventory.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">McKesson web consolidation: 70+ sites evaluated, 17 integrated.</span></div>
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Created OMG!, Yahoo!'s celebrity vertical. Taxonomy for Wired.com.</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">04</div>
+      <div class="col-title">The Barbarian Group</div>
+      <div class="col-meta">2011 · Creative Director</div>
+      <div class="col-desc">Creative lead for the San Francisco office. Clients included Mozilla Firefox, Sears, and Women's Sports Foundation.</div>
+      <div class="col-subs">
+        <div class="col-sub"><span class="col-sub-bullet">—</span><span class="col-sub-text">Firefox Gone Mobile: SXSW launch distributing ice cream sandwiches to anyone, not just badge holders. Recreated in LA, NY, Mountain View, London.</span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">05</div>
+      <div class="col-title">Eat (Tokyo)</div>
+      <div class="col-meta">2003–2004 · Editorial Strategist</div>
+      <div class="col-desc">Strategy and editorial for Air Canada, Shu Uemura, and Volkswagen across Asia Pacific. Led creation of a five-language Air Canada website across Japan, Korea, China, Hong Kong, and Taiwan.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── BAND 2: Books ───────────────────────────────────────────────────── -->
+<div class="band" style="background: var(--cArtifact);">
+  <div class="band-label" style="color: var(--sat-d);">Books</div>
+  <div class="band-track">
+
+    <div class="col">
+      <div class="col-index">01</div>
+      <div class="col-title large">Sonic Boom: Napster, MP3, and the New Pioneers of Music</div>
+      <div class="col-meta">2001 · Perseus Books / 4th Estate · Foreword by Herbie Hancock</div>
+      <div class="col-desc">The music industry was still trying to stop what was already happening when this book came out. An account of the first structural collapse of music as a packaged product. Who saw it coming, who didn't, and what it revealed about how entrenched industries misread change. New York Times Notable Book. New York Times Best Books Since 2000, 2025.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">02</div>
+      <div class="col-title large">Core Memory: A Visual Survey of Vintage Computers</div>
+      <div class="col-meta">2007 · Chronicle Books · Photography by Mark Richards</div>
+      <div class="col-desc">Before computing disappeared into seamless interfaces, this book made its history physical again. Fifty computers photographed by Mark Richards. Design Observer Book of the Year.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">03</div>
+      <div class="col-title large">Designing Across Senses: A Multimodal Approach to Product Design</div>
+      <div class="col-meta">2018 · O'Reilly · With Christine W. Park</div>
+      <div class="col-desc">Computing was escaping the screen, but design methods had not yet caught up. This book built the frameworks for thinking across senses, environments, and embodied interaction.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── BAND 3: Strategic Artifacts ───────────────────────────────────── -->
+<div class="band" style="background: var(--cSignal);">
+  <div class="band-label" style="color: var(--sat-d);">Strategic Artifacts</div>
+  <div class="band-track">
+
+    <div class="col">
+      <div class="col-index">01</div>
+      <div class="col-title">Exploding TV</div>
+      <div class="col-meta">2006 · Razorfish × M-A-D · With Erik Adigard and Sarah Borruso</div>
+      <div class="col-desc">A framework for forces that were only beginning to reshape video culture. Named nine properties of something that wouldn't fully exist for another five years.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">02</div>
+      <div class="col-title">Dix Réflexions sur l'Interface Graphique</div>
+      <div class="col-meta">2008 · Étapes · With Erik Adigard, M-A-D</div>
+      <div class="col-desc">Ten reflections on the graphical interface as it became the operating environment of modern life — no longer just making sense of the world, but shaping what sense is possible.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">03</div>
+      <div class="col-title">Dieter Rams: Making Systems and Making Sense</div>
+      <div class="col-meta">2011 · Domus · San Francisco</div>
+      <div class="col-desc">A critical review of the Rams retrospective at SFMOMA that reframes him as a systems designer as much as a functionalist. Setting the standard for what becomes normal and intuitive is a position of responsibility. Later used as teaching material at Pratt.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">04</div>
+      <div class="col-title">Pattern Recognition</div>
+      <div class="col-meta">2023–Present · Alderman+Ward</div>
+      <div class="col-desc">A recurring event (each with a zine) where ideas are worked out in public — each issue organized around a single theme and developed through conversation, frameworks, and a setting that's as social as it is thoughtful.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">05</div>
+      <div class="col-title">Future Signals</div>
+      <div class="col-meta">Ongoing · Alderman+Ward</div>
+      <div class="col-desc">Built for a moment when the dystopic seems to be the only available mode — a broader tool and practice for imagining change and how it actually happens. In development.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── BAND 4: Journalism and Writing ─────────────────────────────────── -->
+<div class="band band-yellow" style="background: var(--cTranslation);">
+  <div class="band-label" style="color: var(--yel-d);">Journalism and Writing</div>
+  <div class="band-track">
+
+    <div class="col">
+      <div class="col-index">01</div>
+      <div class="col-title">Wired / HotWired</div>
+      <div class="col-meta">1994–1999 · Culture Editor</div>
+      <div class="col-desc">Wrote and edited for HotWired and Wired News as the web emerged as a cultural medium. Helped shape coverage at the moment the medium was still inventing itself.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">02</div>
+      <div class="col-title">Mondo 2000</div>
+      <div class="col-meta">1992–1994 · Senior Editor</div>
+      <div class="col-desc">Edited and wrote for the magazine that helped give early digital culture its form — surfacing ideas like cyberpunk, virtual reality, and networked life as they moved from fringe speculation into something people could recognize and build on.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">03</div>
+      <div class="col-title">Essays, features, and criticism</div>
+      <div class="col-meta">Ongoing</div>
+      <div class="col-desc">Contributions to The Guardian, Domus, Étapes, Surface, i-D, Salon, Interior Design, Make, J@pan Inc, and others.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── BAND 5: Teaching and Public Work ───────────────────────────────── -->
+<div class="band" style="background: var(--cFrame);">
+  <div class="band-label" style="color: var(--sat-d);">Teaching and Public Work</div>
+  <div class="band-track">
+
+    <div class="col">
+      <div class="col-index">01</div>
+      <div class="col-title">Stanford University d.school</div>
+      <div class="col-meta">2019–Present · Adjunct Lecturer</div>
+      <div class="col-desc">Coaching senior capstone teams through design and strategy — helping students translate what they already know into shared frameworks and coordinated action.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">02</div>
+      <div class="col-title">AI prototyping workshops</div>
+      <div class="col-meta">2024–Present · Alderman+Ward</div>
+      <div class="col-desc">Designed and facilitated workshops for healthcare futures teams using AI-assisted prototyping to develop concepts as narrative prototypes — tools for exploring implications and shifting dynamics, not just features.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">03</div>
+      <div class="col-title">AI literacy workshops</div>
+      <div class="col-meta">2024 · Office of Economic and Workforce Development, San Francisco</div>
+      <div class="col-desc">Delivered workshops for small business owners in the Bayview district, enabling entrepreneurs to apply AI directly to real business problems.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">04</div>
+      <div class="col-title">Sensory Orders</div>
+      <div class="col-meta">2020 · Centrum Sztuki Współczesnej Laźnia, Gdańsk</div>
+      <div class="col-desc">Participant in an international exhibition exploring multisensory experience and design.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">05</div>
+      <div class="col-title">Keynote: Exploding TV</div>
+      <div class="col-meta">2006 · Mobile Asia Conference, Bangkok</div>
+      <div class="col-desc">A keynote on the forces reshaping video distribution, delivered a year before the iPhone launched.</div>
+    </div>
+
+    <div class="col">
+      <div class="col-index">06</div>
+      <div class="col-title">Media appearances</div>
+      <div class="col-meta">CNN · BBC · NPR</div>
+      <div class="col-desc">Interviews on music, technology, and digital culture, primarily around Sonic Boom.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Yellow Translation band -->
+<div style="background:#F5E100; padding:40px 52px 56px; display:grid; grid-template-columns:36px 1fr; gap:0 20px;">
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:0.1em; color:rgba(0,0,0,0.42); padding-top:5px; text-align:right;">—</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 48px; align-items:start;">
+    <div>
+      <div style="font-family:'IBM Plex Sans',sans-serif; font-size:22px; font-weight:400; line-height:1.15; letter-spacing:-0.01em; color:#1a1a18; margin-bottom:6px;">Available</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.42); line-height:1.7;">Strategy · Creative · Speaking · Workshops</div>
+    </div>
+    <div style="padding-top:4px; display:flex; flex-direction:column; gap:10px;">
+      <div style="font-family:'IBM Plex Sans',sans-serif; font-size:13px; font-weight:300; line-height:1.65; color:#1a1a18;">Available for strategy and creative engagements, fractional roles, speaking, and workshops. If you're trying to make sense of something new, let's talk.</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.06em;"><a href="mailto:john@aldermanward.com" style="color:#1a1a18; text-decoration:none; border-bottom:1px solid rgba(0,0,0,0.25);">john@aldermanward.com</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
